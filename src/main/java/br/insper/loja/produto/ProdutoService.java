@@ -13,7 +13,7 @@ import org.springframework.http.HttpStatus;
 public class ProdutoService {
 
     private final RestTemplate restTemplate = new RestTemplate();
-    // URL base do serviço de produto – ajuste a porta se necessário
+    // URL base do serviço de produto – ajuste conforme necessário
     private final String produtoServiceUrl = "http://localhost:8080/api/produto";
 
     public Produto getProduto(String id) {

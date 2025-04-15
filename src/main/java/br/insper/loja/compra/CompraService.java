@@ -42,7 +42,7 @@ public class CompraService {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Nenhum produto informado para a compra");
         }
 
-        // Conta a frequência de cada produto (caso um produto apareça mais de uma vez)
+        // Conta a frequência de cada produto
         Map<String, Integer> contagemProdutos = new HashMap<>();
         for (String prodId : listaIds) {
             contagemProdutos.put(prodId, contagemProdutos.getOrDefault(prodId, 0) + 1);
@@ -55,7 +55,7 @@ public class CompraService {
             int quantidadeComprada = entry.getValue();
             Produto produto = produtoService.getProduto(prodId);
             if (produto.getQuantidade() < quantidadeComprada) {
-                throw new ResponseStatusException(HttpStatus.BAD_REQUEST, 
+                throw new ResponseStatusException(HttpStatus.BAD_REQUEST,
                         "Estoque insuficiente para o produto " + prodId);
             }
             totalCompra += produto.getPreco() * quantidadeComprada;

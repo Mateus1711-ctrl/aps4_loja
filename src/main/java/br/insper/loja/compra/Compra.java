@@ -18,7 +18,7 @@ public class Compra {
     private LocalDateTime dataCompra;
     private double total; // preço total da compra
 
-    // Getters e Setters existentes...
+    // Getters e Setters
     public String getId() {
         return id;
     }

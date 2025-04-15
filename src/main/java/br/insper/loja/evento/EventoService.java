@@ -14,7 +14,5 @@ public class EventoService {
 
         RestTemplate restTemplate = new RestTemplate();
         restTemplate.postForEntity("http://localhost:8080/api/evento", evento, Evento.class);
-
     }
-
 }
