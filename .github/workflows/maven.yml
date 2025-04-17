@@ -52,7 +52,7 @@ jobs:
               -e USER_DB=${{ secrets.USER_DB }} \
               -e PASS_DB=${{ secrets.PASS_DB }} \
               -e PATH_DB=${{ secrets.PATH_DB }} \
-              -e NAME_DB=${{ secrets.NAME_DB_LOJA }} \
+              -e NAME_DB=${{ secrets.NAME_DB }} \
               --name loja \
               --network=rede \
               mateus1711/loja-ci:${{ github.sha }}
