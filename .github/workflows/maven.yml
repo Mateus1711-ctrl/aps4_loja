@@ -9,7 +9,8 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout code
+        uses: actions/checkout@v4
 
       - name: Set up JDK 21
         uses: actions/setup-java@v4
@@ -38,7 +39,7 @@ jobs:
           push: true
           tags: mateus1711/loja-ci:${{ github.sha }}
 
-      - name: Execute remote SSH commands (Loja)
+      - name: Deploy via SSH
         uses: appleboy/ssh-action@master
         with:
           host: ${{ secrets.HOST_TEST }}
@@ -49,10 +50,7 @@ jobs:
             docker stop loja || true
             docker rm --force loja || true
             docker run -d -p 8081:8081 \
-              -e USER_DB=${{ secrets.USER_DB }} \
-              -e PASS_DB=${{ secrets.PASS_DB }} \
-              -e PATH_DB=${{ secrets.PATH_DB }} \
-              -e NAME_DB=${{ secrets.NAME_DB }} \
+              -e MONGO_URI=${{ secrets.MONGO_URI_LOJA }} \
               --name loja \
               --network=rede \
               mateus1711/loja-ci:${{ github.sha }}
